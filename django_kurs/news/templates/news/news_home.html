@@ -5,5 +5,11 @@
 {% block content %}
     <h1>{{ h1 }}</h1>
     <p>{{ text }}</p>
+    {% for i in news %}
+        <div class="alert alert-warning">
+            <h3>{{ i.title }}</h3>
+            <p>{{ i.anons }}</p>
+        </div>
+    {% endfor %}
     <button type="button" class="btn btn-primary px-4 py-2">Узнать главное</button>
 {% endblock %}
