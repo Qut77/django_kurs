@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import articles
 from .forms import articles_form
-
+from django.views.generic import DetailView
 
 def news_home(request):
     news = articles.objects.all
@@ -12,6 +12,12 @@ def news_home(request):
         'news':news
     }
     return render(request, 'news/news_home.html', data)
+
+class news_detail(DetailView):
+    model=articles
+    template_name='news/news_detail.html'
+    context_object_name = 'article'
+
 
 def create(request):
     error = ''
