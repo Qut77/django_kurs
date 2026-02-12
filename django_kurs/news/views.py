@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from .models import articles
 from .forms import articles_form
-from django.views.generic import DetailView
+from django.views.generic import DetailView, UpdateView, DeleteView
 
 def news_home(request):
-    news = articles.objects.all
+    news = articles.objects.all()
     data = {
         'title': 'Новости на сайте',
         'h1':'Новости',
@@ -18,6 +18,15 @@ class news_detail(DetailView):
     template_name='news/news_detail.html'
     context_object_name = 'article'
 
+class news_update(UpdateView):
+    model=articles
+    template_name='news/create.html'
+    form_class = articles_form
+
+class news_delete(DeleteView):
+    model=articles
+    template_name='news/news_delete.html'
+    success_url ='/news/'
 
 def create(request):
     error = ''
